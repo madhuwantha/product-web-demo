@@ -1,14 +1,26 @@
+import { API_URL } from "@/app/const/variables";
+import ProductForm from "@/componets/NavBar/ProductForm/ProductForm";
+
 export default async function ProductView({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ id: string }>;
 }) {
+  const data = await params;
+  const { id } = data;
+  console.log("id", id);
 
-  console.log("params",await params)
+  const res: Response = await fetch(`${API_URL}/products/${id}`, {
+    cache: "no-store",
+  });
+  const productData = await res.json();
+  const product = productData.data;
+
+  
 
   return (
-    <div className="bg-purple-300 p-10">
-      <h2>Products View/Edit</h2>
+    <div className="container mx-auto">
+      <ProductForm  product={product} isView={true} />
     </div>
   );
 }

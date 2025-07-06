@@ -1,11 +1,11 @@
 "use client"
 
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IProduct } from '@/types/Product'
 import { API_URL } from '@/app/const/variables'
 
-export default function ProductForm() {
+export default function ProductForm( {product, isView}: {product?: IProduct, isView?: boolean} ) {
 
 
     const [productData, setProductData] = useState<IProduct>({
@@ -14,6 +14,13 @@ export default function ProductForm() {
         price: 0,
         stocks: 0
     })
+
+
+    useEffect(() => {
+        if(product) {
+            setProductData(product)
+        }
+    }, [ product])
 
 //     {
 //     "name": "test name",
@@ -53,6 +60,7 @@ export default function ProductForm() {
               </label>
               <div className="mt-2">
                 <input
+                    disabled={isView}
                     value={productData.name}
                     onChange={(e) => setProductData({...productData, name: e.target.value})}
                   id="name"
@@ -70,6 +78,7 @@ export default function ProductForm() {
               </label>
               <div className="mt-2">
                 <textarea
+                    disabled={isView}
                     value={productData.description}
                     onChange={(e) => setProductData({...productData, description: e.target.value})}
                   id="about"
@@ -97,6 +106,7 @@ export default function ProductForm() {
               </label>
               <div className="mt-2">
                 <input
+                    disabled={isView}
                     value={productData.price}
                     onChange={(e) => setProductData({...productData, price: Number(e.target.value)})}
                   id="price"
@@ -114,6 +124,7 @@ export default function ProductForm() {
               </label>
               <div className="mt-2">
                 <input
+                    disabled={isView}
                     value={productData.stocks}
                     onChange={(e) => setProductData({...productData, stocks: Number(e.target.value)})}
                   id="stocks"
@@ -140,6 +151,7 @@ export default function ProductForm() {
           Cancel
         </button>
         <button
+            disabled={isView}
           type="button"
           onClick={saveProduct}
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
