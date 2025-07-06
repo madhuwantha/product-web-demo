@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-green-700 p-10">
+    <div className="container mx-auto">
       {children}
     </div>
   );
