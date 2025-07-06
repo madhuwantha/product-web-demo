@@ -1,7 +1,6 @@
 "use client"
 
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { ChevronDownIcon } from '@heroicons/react/16/solid'
+
 import { useState } from 'react'
 import { IProduct } from '@/types/Product'
 import { API_URL } from '@/app/const/variables'
