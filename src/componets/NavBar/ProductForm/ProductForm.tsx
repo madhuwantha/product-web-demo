@@ -30,7 +30,7 @@ export default function ProductForm({
   const onSubmit = () => {
     console.log("is", isEditing);
     if (isEditing) {
-      updateProduct();
+      updateProduct();      
     } else {
       saveProduct();
     }
@@ -46,7 +46,8 @@ export default function ProductForm({
       body: JSON.stringify(productData),
     });
     const data = await res.json();
-    console.log(data);
+    console.log(data);    
+    redirect('/product')
   };
 
   const updateProduct = async () => {
@@ -60,6 +61,7 @@ export default function ProductForm({
     });
     const data = await res.json();
     console.log(data);
+    setIsEditing(false);
   };
 
   const onCancel = () => {    
